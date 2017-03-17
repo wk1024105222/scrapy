@@ -14,10 +14,10 @@ class TencentCrawlerSpider(CrawlSpider):
     '''
     name = 'tencentjob_crawler'
     allowed_domains = ['hr.tencent.com']
-    start_urls = ['http://hr.tencent.com/position.php?lid=&tid=&start=990#a']
+    start_urls = ['http://hr.tencent.com/position.php?lid=&tid=&start=%s#a' % (i) for i in range(0,1390,10)]
 
     rules = [
-        Rule(SgmlLinkExtractor(allow=r'/position.php\?lid=&tid=&start=\d{4}#a')),
+        # Rule(SgmlLinkExtractor(allow=r'/position.php\?lid=&tid=&start=\d{4}#a')),
         Rule(SgmlLinkExtractor(allow=r'/position_detail.php\?id=\d{1,5}&keywords=&tid=0&lid=0'),
                  callback='parse_item', follow=False),
     ]

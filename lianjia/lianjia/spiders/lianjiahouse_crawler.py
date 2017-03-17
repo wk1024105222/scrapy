@@ -3,12 +3,27 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 
-from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
-
 from lianjia.items import HouseItem
 import sys
 
-sys.stdout=open('output.txt','w') #将打印信息输出在相应的位置下
+# sys.stdout=open('output.txt','w') #将打印信息输出在相应的位置下
+#    V2.0 遍历组合多种查询条件  生成url填充start_urls
+quyu=['tianhe','yuexiu','liwan','haizhu','fanyu','baiyun','huangpugz','conghua','zengcheng','huadou','luogang','nansha','qita']
+jiage=['p'+str(i) for i in range(1,9,1)]
+mianji=['a'+str(i) for i in range(1,8,1)]
+# fangxing=['l'+str(i) for i in range(1,7,1)]
+ditie=['li1104606'+str(i) for i in range(79,89,1)]
+url1=[]
+for a in quyu:
+    for b in jiage:
+        for c in mianji:
+            url1.append('http://gz.lianjia.com/ershoufang/%s/%s%s/' % (a,b,c))
+            # print 'http://gz.lianjia.com/ershoufang/%s/%s%s/' % (a,b,c)
+for e in ditie:
+    for f in jiage:
+        url1.append('http://gz.lianjia.com/ditiefang/%s/%s/' % (e,f))
+        # print 'http://gz.lianjia.com/ditiefang/%s/%s/' % (e,f)
+
 
 class LianjiaHouseCrawlerSpider(CrawlSpider):
     '''
@@ -18,25 +33,35 @@ class LianjiaHouseCrawlerSpider(CrawlSpider):
      '''
     name = 'lianjiahouse_crawler'
     allowed_domains = ['gz.lianjia.com']
-    start_urls = [ 'http://gz.lianjia.com/ershoufang/pg'+str(i) for i in range(1,101,1)]+\
-                 [ 'http://gz.lianjia.com/ershoufang/p'+str(i) for i in range(1,9,1)]+\
-                 [ 'http://gz.lianjia.com/ershoufang/a'+str(i) for i in range(1,8,1)]+\
-                 [ 'http://gz.lianjia.com/ershoufang/l'+str(i) for i in range(1,7,1)]+\
-                 [ 'http://gz.lianjia.com/ershoufang/lc'+str(i) for i in range(1,4,1)]+\
-                 [ 'http://gz.lianjia.com/ershoufang/f'+str(i) for i in range(1,6,1)]+\
-                 [ 'http://gz.lianjia.com/ershoufang/y'+str(i) for i in range(1,5,1)]+\
-                 ['http://gz.lianjia.com/ditiefang/li1104606'+str(i) for i in range(79,89,1)]+\
-                 [ 'http://gz.lianjia.com/ditiefang/mt'+str(i) for i in range(1,4,1)]
+    #    V1.0
+    # start_urls = [ 'http://gz.lianjia.com/ershoufang/pg'+str(i) for i in range(1,101,1)]+\
+    #              [ 'http://gz.lianjia.com/ershoufang/p'+str(i) for i in range(1,9,1)]+\
+    #              [ 'http://gz.lianjia.com/ershoufang/a'+str(i) for i in range(1,8,1)]+\
+    #              [ 'http://gz.lianjia.com/ershoufang/l'+str(i) for i in range(1,7,1)]+\
+    #              [ 'http://gz.lianjia.com/ershoufang/lc'+str(i) for i in range(1,4,1)]+\
+    #              [ 'http://gz.lianjia.com/ershoufang/f'+str(i) for i in range(1,6,1)]+\
+    #              [ 'http://gz.lianjia.com/ershoufang/y'+str(i) for i in range(1,5,1)]+\
+    #              ['http://gz.lianjia.com/ditiefang/li1104606'+str(i) for i in range(79,89,1)]+\
+    #              [ 'http://gz.lianjia.com/ditiefang/mt'+str(i) for i in range(1,4,1)]
+    #    V2.0
+    start_urls = url1
+    #    V3.0
+    # start_urls=['http://gz.lianjia.com/ershoufang']
     rules = [
-        Rule(SgmlLinkExtractor(allow=r'/ershoufang/[a-z]{,30}/?$')),
-        Rule(SgmlLinkExtractor(allow=r'/xiaoqu/[0-9]{,15}/esf/?$')),
-        # Rule(SgmlLinkExtractor(allow=r'/ershoufang/pg\d')),
-        Rule(SgmlLinkExtractor(allow=r'/ershoufang/GZ\d{,10}\.html$'),
+        #    V1.0、V2.0
+        Rule(LinkExtractor(allow=r'/ershoufang/[a-z]{,30}/?$')),
+         Rule(LinkExtractor(allow=r'/ershoufang/[0-9]{,20}/?$')),
+        Rule(LinkExtractor(allow=r'/xiaoqu/[0-9]{,15}/esf/?$')),
+
+        Rule(LinkExtractor(allow=r'/ershoufang/[GZ0-9]{2}\d{,10}\.html$'),
                  callback='parse_item', follow=True),
+        #    V3.0
+        # Rule(LinkExtractor(allow=r'/ershoufang/\w*?')),
+
     ]
 
     def parse_item(self, response):
-        # print response.body
+        print response.url
         item = HouseItem()
         try:
             item['url'] = response.url
@@ -64,7 +89,7 @@ class LianjiaHouseCrawlerSpider(CrawlSpider):
             item['direction']='error'
         try:
             item['addr'] = response.xpath('//div[@class="areaName"]/span[@class="info"]/a[1]/text()').extract()[0]\
-                           +response.xpath('//div[@class="areaName"]/span[@class="info"]/a[1]/text()').extract()[0]
+                           +response.xpath('//div[@class="areaName"]/span[@class="info"]/a[2]/text()').extract()[0]
         except Exception as e:
             item['addr']='error'
         try:
