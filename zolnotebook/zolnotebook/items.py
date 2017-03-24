@@ -10,10 +10,10 @@ from scrapy.item import Item, Field
 
 class ZolnotebookItem(scrapy.Item):
     # 页面html
-    html=Field()
+    # html=Field()
     # 参数列表 map
     param=Field()
 
-    url = Field()
-
-    name = Field()
+    # url = Field()
+    #
+    # name = Field()
