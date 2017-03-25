@@ -20,12 +20,27 @@ class ZolNoteBookCrawlerSpider(Spider):
 
     def parse(self, response):
         ids =  response.xpath('//li[@data-follow-id]/@data-follow-id').extract()
+        prices = response.xpath('//b[@class="price-type"]/text()').extract()
+        length = len(ids)
+
         for a in ids:
             id = a[1:]
             page = int(id) /1000+1
             url = 'http://detail.zol.com.cn/'+str(page)+'/'+str(id)+'/param.shtml'
             # print  url
             yield Request(url, callback=self.parse_item, dont_filter=True)
+
+        item = ZolnotebookItem()
+        map = {}
+        if len(prices) == length:
+
+            for index in range(0, length, 1):
+                map['id'] = ids[index][1:]
+                map['price'] = prices[index]
+                item['param']=map
+                yield item
+        else:
+            print response.url,'价格数量与ID数量不一致'
 
     def parse_item(self, response):
         item = ZolnotebookItem()
