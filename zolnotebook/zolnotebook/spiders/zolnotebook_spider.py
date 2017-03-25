@@ -1,22 +1,36 @@
 # -*- coding: utf-8 -*-
 
 from scrapy import Spider, Request
-# from scrapy.zolnotebook.zolnotebook.items import ZolnotebookItem
-
-# sys.stdout=open('output.txt','w') #将打印信息输出在相应的位置下.
+import json
 from zolnotebook.items import ZolnotebookItem
 
+# 已完成任务缓存
+done={}
+lines = open('zolnotebookV1.0.json').readlines()
+for line in lines:
+    a = json.loads(line)
+    id = a['url'].encode('utf-8').split('/')[-2]
+    done[id]=1
 
 class ZolNoteBookCrawlerSpider(Spider):
 
     name = 'zolnotebook_spider'
     allowed_domains = ['http://detail.zol.com.cn/']
-    start_urls =    [ 'http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s7236_1_2_0_'+str(i)+'.html' for i in range(1, 8,1)]+\
-                    [ 'http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s6974_1_2_0_'+str(i)+'.html' for i in range(1,19,1)]+\
-                    [ 'http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s6456_1_2_0_'+str(i)+'.html' for i in range(1,23,1)]+\
-                    [ 'http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s6316_1_2_0_'+str(i)+'.html' for i in range(1,32,1)]+\
-                    [ 'http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s6133_1_2_0_'+str(i)+'.html' for i in range(1,24,1)]+\
-                    [ 'http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s5719_1_2_0_'+str(i)+'.html' for i in range(1,76,1)]
+    #V2.0 按内存大小
+    start_urls =  \
+                    ['http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s6648_1_2_0_'+str(i)+'.html' for i in range(1, 3,1) ]+\
+                    ['http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s5730_1_2_0_'+str(i)+'.html' for i in range(1,14,1) ]+\
+                    ['http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s4108_1_2_0_'+str(i)+'.html' for i in range(1,63,1) ]+\
+                    ['http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s2192_1_2_0_'+str(i)+'.html' for i in range(1,105,1)]+\
+                    [ 'http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s108_1_2_0_'+str(i)+'.html' for i in range(1,105,1)]
+    #V1.0 按上市时间
+    # start_urls =  \
+    #                 [ 'http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s7236_1_2_0_'+str(i)+'.html' for i in range(1, 8,1)]+\
+    #                 [ 'http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s6974_1_2_0_'+str(i)+'.html' for i in range(1,19,1)]+\
+    #                 [ 'http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s6456_1_2_0_'+str(i)+'.html' for i in range(1,23,1)]+\
+    #                 [ 'http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s6316_1_2_0_'+str(i)+'.html' for i in range(1,32,1)]+\
+    #                 [ 'http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s6133_1_2_0_'+str(i)+'.html' for i in range(1,24,1)]+\
+    #                 [ 'http://detail.zol.com.cn/notebook_index/subcate16_0_list_1_s5719_1_2_0_'+str(i)+'.html' for i in range(1,76,1)]
 
     def parse(self, response):
         ids =  response.xpath('//li[@data-follow-id]/@data-follow-id').extract()
@@ -25,6 +39,8 @@ class ZolNoteBookCrawlerSpider(Spider):
 
         for a in ids:
             id = a[1:]
+            if done.has_key(id):
+                continue
             page = int(id) /1000+1
             url = 'http://detail.zol.com.cn/'+str(page)+'/'+str(id)+'/param.shtml'
             # print  url
