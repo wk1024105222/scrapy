@@ -9,8 +9,9 @@ done={}
 lines = open('zolnotebookV1.0.json').readlines()
 for line in lines:
     a = json.loads(line)
-    id = a['url'].encode('utf-8').split('/')[-2]
-    done[id]=1
+    if a.has_key('url'):
+        id = a['url'].encode('utf-8').split('/')[-2]
+        done[id]=1
 
 class ZolNoteBookCrawlerSpider(Spider):
 
