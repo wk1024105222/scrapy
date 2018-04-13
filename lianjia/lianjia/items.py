@@ -27,4 +27,19 @@ class HouseItem(Item):
 
     style=Field()
 
+    lift=Field()
+
+    care=Field()
+    publish = Field()
+
+
+
+class XiaoquItem(Item):
+    url=Field()
+
+    name=Field()
+
+    price=Field()
+
+
 
