@@ -20,6 +20,7 @@ class ZolNoteBookCrawlerSpider(Spider):
     def parse(self, response):
         print response.url
         pagesinfo =  response.xpath('//div[@class="page-box house-lst-page-box"]/@page-data').extract()
+		#小区房源是否不止一页 生成其他页面url
         if len(pagesinfo) > 0:
             pagenum = json.loads(pagesinfo[0])['totalPage']
             if pagenum > 1:
@@ -33,6 +34,7 @@ class ZolNoteBookCrawlerSpider(Spider):
                             newurl = '%s%d%s' % (before,a,after)
                             yield Request(newurl, callback=self.parse)
 
+		#开始解析房源信息
         item = HouseItem()
         houses = response.xpath('//li[@class="clear"]/div[@class="info clear"]')
 
