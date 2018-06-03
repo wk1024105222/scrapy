@@ -12,13 +12,14 @@ logging.basicConfig(level=logging.INFO,
                 format='%(asctime)s %(thread)d [line:%(lineno)d] [%(threadName)s] %(levelname)s %(message)s',
                 datefmt='%a, %d %b %Y %H:%M:%S',
                 filename='dagaier_spider.log')
-
+baseurl = 'http://dd.ghuws.men'
+#baseurl = 'http://dc.itbb.men'
 class DagaierCrawlerSpider(Spider):
     name = 'dagaier_spider'
-    allowed_domains = ['http://dc.ddder.us']
+    allowed_domains = [baseurl]
     # start_urls = ['https://gz.lianjia.com/ershoufang/pg1c219999216554095/','https://gz.lianjia.com/ershoufang/pg1c2111103316916/']
     #生成190页索引页的url
-    start_urls = ['http://dc.ddder.us/thread0806.php?fid=16&search=&page='+str(i)+'' for i in range(1,191,1)]
+    start_urls = [baseurl+'/thread0806.php?fid=16&search=&page='+str(i)+'' for i in range(1,6,1)]
 
     def parse(self, response):
         '''
@@ -30,8 +31,8 @@ class DagaierCrawlerSpider(Spider):
         urls =  response.xpath('//h3/a/@href').extract()
         for url in urls:
             if url.startswith('htm_data') == True :
-                print 'http://dc.ddder.us/'+url
-                yield Request('http://dc.ddder.us/%s' % (url), callback=self.parse_item,dont_filter=True)
+                print baseurl+'/'+url
+                yield Request(baseurl+'/%s' % (url), callback=self.parse_item,dont_filter=True)
 
     def parse_item(self, response):
         item = DagaierItem()
