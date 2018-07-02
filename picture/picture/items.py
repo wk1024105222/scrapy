@@ -8,7 +8,7 @@
 from scrapy.item import Item, Field
 
 
-class DagaierItem(Item):
+class PictureItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     name = Field()

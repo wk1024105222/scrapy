@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for dagaier project
+# Scrapy settings for picture project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,10 +9,10 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'dagaier'
+BOT_NAME = 'picture'
 
-SPIDER_MODULES = ['dagaier.spiders']
-NEWSPIDER_MODULE = 'dagaier.spiders'
+SPIDER_MODULES = ['picture.spiders']
+NEWSPIDER_MODULE = 'picture.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -30,14 +30,14 @@ CONCURRENT_REQUESTS_PER_DOMAIN=1
 #CONCURRENT_REQUESTS_PER_IP=16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED=False
+COOKIES_ENABLED=False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED=False
 
 # Override the default request headers:
 DEFAULT_REQUEST_HEADERS = {
-    'Host':'dc.ddder.us',
+    'Host':'xx.xxx.xxx',
     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
     'Accept-Language':'zh-CN,zh;q=0.9',
     'Accept-Encoding':'gzip, deflate',

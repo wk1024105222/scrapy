@@ -3,8 +3,8 @@ import logging
 
 from scrapy import Spider, Request
 import sys
-from dagaier.items import DagaierItem
-from dagaier.dbpool import pool
+from picture.items import PictureItem
+from picture.dbpool import pool
 
 sys.stdout=open('output.txt','w') #将打印信息输出在相应的位置下
 
@@ -12,25 +12,24 @@ logging.basicConfig(level=logging.INFO,
                 filemode='w',
                 format='%(asctime)s %(thread)d [line:%(lineno)d] [%(threadName)s] %(levelname)s %(message)s',
                 datefmt='%a, %d %b %Y %H:%M:%S',
-                filename='dagaier_spider.log')
+                filename='picture_spider.log')
 
 # 缓存所有已下载的页面数据
 con = pool.connection()
 cursor = con.cursor()
-cursor.execute("select pageid from dagaierpage")
+cursor.execute("select pageid from picturepage")
 allpageid = []
 for url in cursor.fetchall():
     allpageid.append(url[0])
 con.close()
 
-baseurl = 'http://cl.cbcb.us'
+baseurl = 'http://xx.xxx.xxx'
 
-class DagaierCrawlerSpider(Spider):
-    name = 'dagaier_spider'
+class PictureCrawlerSpider(Spider):
+    name = 'picture_spider'
     allowed_domains = [baseurl]
-    # start_urls = ['https://gz.lianjia.com/ershoufang/pg1c219999216554095/','https://gz.lianjia.com/ershoufang/pg1c2111103316916/']
-    #生成190页索引页的url
-    start_urls = [baseurl+'/thread0806.php?fid=16&search=&page='+str(i)+'' for i in range(1,101,1)]
+    #生成索引页的url
+    start_urls = [baseurl+'/thread0806.php?fid=16&search=&page='+str(i)+'' for i in range(1,11,1)]
 
     def parse(self, response):
         '''
@@ -45,11 +44,11 @@ class DagaierCrawlerSpider(Spider):
                 # 判断数据库是否已存在 只yield 数据库没有的
                 pageid = url.split('/')[-1]
                 if pageid not in allpageid:
-                    print url.split('/')[-1]
+                    print url
                     yield Request(baseurl+'/%s' % (url), callback=self.parse_item,dont_filter=True)
 
     def parse_item(self, response):
-        item = DagaierItem()
+        item = PictureItem()
         item['url']=response.url
         item['name'] =  response.xpath('//h4/text()').extract()[0]
         item['id'] = response.url.split('/')[-1]

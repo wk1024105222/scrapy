@@ -12,9 +12,9 @@ def createPowerShellScript(type):
     :param type: 1 linux  2 powershell
     :return:
     '''
-    local = 'd:\\fileloc\\dagaier\\'
-    f = open("D:\\Workspaces_python\\scrapy\\dagaier\\dagaier.json")
-    fo = open("dagaier.sh", "w")
+    local = 'd:\\fileloc\\picture\\'
+    f = open("D:\\Workspaces_python\\scrapy\\picture\\picture.json")
+    fo = open("picture.sh", "w")
     if type == 2:
 
         fo.write( '$client = new-object System.Net.WebClient')
@@ -50,7 +50,7 @@ def saveDagaierPicInfoToDB():
     con = pool.connection()
     cursor = con.cursor()
 
-    f = open("D:\\Workspaces_python\\scrapy\\dagaier\\dagaier.json")
+    f = open("D:\\Workspaces_python\\scrapy\\picture\\picture.json")
     entitys = json.load(f)
     for a in entitys:
         try:
@@ -70,11 +70,11 @@ def saveDagaierPicInfoToDB():
                     con.commit()
                 except Exception as e:
                     print e
-                    print 'dagaier picture %s error' % (b)
+                    print 'picture picture %s error' % (b)
                     break
         except Exception as e:
             print e
-            print 'dagaier page %s error' % (url)
+            print 'picture page %s error' % (url)
 
     f.close()
     con.close()

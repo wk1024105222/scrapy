@@ -2,10 +2,10 @@
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-from dagaier.items import DagaierItem
+from picture.items import PictureItem
 
-class Dagaier1Spider(CrawlSpider):
-    name = 'dagaier_crawler'
+class PictureSpider(CrawlSpider):
+    name = 'picture_crawler'
     allowed_domains = ['cl.giit.us']
     start_urls = ['http://dc.ddder.us/thread0806.php?fid=16&search=&page='+str(i)+'' for i in range(1,10,1)]
 
@@ -14,7 +14,7 @@ class Dagaier1Spider(CrawlSpider):
     )
 
     def parse_item(self, response):
-        item = DagaierItem()
+        item = PictureItem()
         item['url']=response.url
         item['name'] =  response.xpath('//h4/text()').extract()[0]
         urls = response.xpath('//p[@align="center"]/input/@src').extract()
