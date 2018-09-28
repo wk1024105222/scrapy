@@ -23,7 +23,6 @@ if __name__=='__main__':
               "where d.date >='%s' and d.date <='%s'" \
               "order by  d.date" % (code,'2017-01-01',code,'2017-01-01','2017-01-01','2018-09-27')
         cursor.execute(sql)
-
         dayDatas = list(cursor.fetchall())
         if dayDatas == None:
             continue
@@ -46,18 +45,20 @@ if __name__=='__main__':
             giveStockRate = int(dayDatas[i][3])
             giveMoneyRate = float(dayDatas[i][4])
 
-            if txndate.endswith('01') :
-                #开始交易
+            if txndate.endswith('01'):
+                #卡转证券
                 tranAmount = 1000
+                tranFlag = '0'
             else:
                 tranAmount = 0
 
             giveMoney=ytdStockTotal/10*giveMoneyRate
             giveStock = ytdStockTotal / 10 * giveStockRate
 
-            if txndate.endswith('01') and open>0:
+            if tranFlag=='0' and open>0:
                 buyStock = (tranAmount+giveMoney+ytdbalance)//(open*100)*100
-            else :
+                tranFlag='1'
+            else  :
                 buyStock=0
 
             stockTotal = ytdStockTotal+buyStock+giveStock
