@@ -11,6 +11,7 @@ from scrapy.item import Item, Field
 class FundBaseInfoItem(Item):
     url = Field()
     code = Field()
+    type = Field()
     fullName = Field()
     name = Field()
     type = Field()
@@ -22,3 +23,26 @@ class FundBaseInfoItem(Item):
     bonus = Field()
     manageRate = Field()
     trusteeshipRate = Field()
+
+class FundAssetAllocationItem(Item):
+    url = Field()
+    code = Field()
+    type = Field()
+    date = Field()
+    stockPer = Field()
+    bondPer = Field()
+    cashPer = Field()
+    netAssets = Field()
+
+class FundAssetsScaleItem(Item):
+    url = Field()
+    code = Field()
+    type = Field()
+    date = Field()
+    applyNum = Field()
+    redeemNum = Field()
+    totalNum = Field()
+    balance = Field()
+    changeRate = Field()
+
+

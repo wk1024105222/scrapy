@@ -4,7 +4,7 @@ import logging
 from scrapy import Spider, Request
 import sys
 from fund.dbpool import pool
-from fund.items import FundBaseInfoItem
+from fund.items import *
 
 sys.stdout=open('output.txt','w') #将打印信息输出在相应的位置下
 
@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO,
 # 获取未下载的页面
 con = pool.connection()
 cursor = con.cursor()
-cursor.execute("select url from fund_dataurl where type='jbgk' and flag='0'")
+cursor.execute("select url from fund_dataurl where type='gmbd' and flag='0'")
 urls = []
 for url in cursor.fetchall():
     urls.append(url[0])
@@ -32,6 +32,7 @@ class FundCrawlerSpider(Spider):
 
     def parse(self, response):
         url = response.url
+        trs = []
         item = None
         if url.find('jbgk') >= 0:
             try:
@@ -44,49 +45,105 @@ class FundCrawlerSpider(Spider):
                 tr6 = response.xpath('//*[@class="info w790"]/tr[7]')
                 item['url'] = response.url
                 item['code'] = url[-11:-5]
+                item['type'] = 'jbgk'
                 item['fullName'] = tr0.xpath('td[1]/text()').extract()[0]
                 item['name'] = tr0.xpath('td[2]/text()').extract()[0]
                 item['type'] = tr1.xpath('td[2]/text()').extract()[0]
-                item['issueDate'] = tr2.xpath('td[1]/text()').extract()[0]
+                if len(tr2.xpath('td[1]/text()').extract())>0:
+                    item['issueDate'] = tr2.xpath('td[1]/text()').extract()[0]
+                else :
+                    item['issueDate'] = ''
                 item['listDate'] = tr2.xpath('td[2]/text()').extract()[0]
-                item['manageRate'] = tr6.xpath('td[1]/text()').extract()[0]
+                if len(tr6.xpath('td[1]/text()').extract())>0 :
+                    item['manageRate'] = tr6.xpath('td[1]/text()').extract()[0]
+                else :
+                    item['manageRate'] = ''
                 item['trusteeshipRate'] = tr6.xpath('td[2]/text()').extract()[0]
 
                 item['company'] = tr4.xpath('td[1]/a/text()').extract()[0]
                 item['manager'] = tr5.xpath('td[1]/a/text()').extract()[0]
-                item['bank'] = tr4.xpath('td[2]/a/text()').extract()[0]
+                if len(tr4.xpath('td[2]/a/text()').extract())>0:
+                    item['bank'] = tr4.xpath('td[2]/a/text()').extract()[0]
+                else:
+                    item['bank']= ''
                 item['bonus'] = tr5.xpath('td[2]/a/text()').extract()[0]
 
                 yield item
             except Exception as e:
+                print '已解析数据' + item
                 print '解析异常'+response.url
+        elif url.find('zcpz') >= 0:
+            #资产配置
+            item = None
+            trs = response.xpath('//*[@class="w782 comm tzxq"]/tbody/tr')
+            for tr in trs :
+                try:
+                    item = FundAssetAllocationItem()
+                    item['url'] = url
+                    item['code'] = url[-11:-5]
+                    item['type'] = 'zcpz'
+                    item['date'] = tr.xpath('td[1]/text()').extract()[0]
+                    item['stockPer'] = tr.xpath('td[2]/text()').extract()[0]
+                    item['bondPer'] = tr.xpath('td[3]/text()').extract()[0]
+                    item['cashPer'] = tr.xpath('td[4]/text()').extract()[0]
+                    item['netAssets'] = tr.xpath('td[5]/text()').extract()[0]
+                    yield item
+                except Exception as e:
+                    print '已解析数据' + item
+                    print '解析异常'+response.url
+        elif url.find('gmbd') >= 0:
+            # 规模变动
+            item = None
+            trs = response.xpath('//*[@class="w782 comm gmbd"]/tbody/tr')
+            for tr in trs:
+                try:
+                    item = FundAssetsScaleItem()
+                    item['url'] = url
+                    item['code'] = url[-11:-5]
+                    item['type'] = 'gmbd'
+                    item['date'] = tr.xpath('td[1]/text()').extract()[0]
+                    item['applyNum'] = tr.xpath('td[2]/text()').extract()[0]
+                    item['redeemNum'] = tr.xpath('td[3]/text()').extract()[0]
+                    item['totalNum'] = tr.xpath('td[4]/text()').extract()[0]
+                    item['balance'] = tr.xpath('td[5]/text()').extract()[0]
+                    item['changeRate'] = tr.xpath('td[6]/text()').extract()[0]
+                    yield item
+                except Exception as e:
+                    print '已解析数据' + item
+                    print '解析异常' + response.url
+        con = pool.connection()
+        cursor = con.cursor()
+        cursor.execute("update fund_dataurl set flag='1', size=%d where url ='%s' " % (len(trs), url))
+        con.commit()
+        con.close()
 
     def parse_item(self, response):
-        url = response.url
-        item = None
-        if url.find('jbgk')>=0:
-            item = FundBaseInfoItem()
-            tr0 = response.xpath('//*[@class="info w790"]/tr[1]')
-            tr1 = response.xpath('//*[@class="info w790"]/tr[2]')
-            tr2 = response.xpath('//*[@class="info w790"]/tr[3]')
-            tr4 = response.xpath('//*[@class="info w790"]/tr[5]')
-            tr5 = response.xpath('//*[@class="info w790"]/tr[6]')
-            tr6 = response.xpath('//*[@class="info w790"]/tr[7]')
-            item['url'] = response.url
-            item['code'] = url[-11:-5]
-            item['fullName'] = tr0.xpath('td[1]/text()').extract()[0]
-            item['name'] = tr0.xpath('td[2]/text()').extract()[0]
-            item['type'] = tr1.xpath('td[2]/text()').extract()[0]
-            item['issueDate'] = tr2.xpath('td[1]/text()').extract()[0]
-            item['listDate'] = tr2.xpath('td[2]/text()').extract()[0]
-            item['manageRate'] = tr6.xpath('td[1]/text()').extract()[0]
-            item['trusteeshipRate'] = tr6.xpath('td[2]/text()').extract()[0]
-
-            item['company'] = tr4.xpath('td[1]/a/text()').extract()[0]
-            item['manager'] = tr5.xpath('td[1]/a/text()').extract()[0]
-            item['bank'] = tr4.xpath('td[2]/a/text()').extract()[0]
-            item['bonus'] = tr5.xpath('td[2]/a/text()').extract()[0]
-        return item
+        # url = response.url
+        # item = None
+        # if url.find('jbgk')>=0:
+        #     item = FundBaseInfoItem()
+        #     tr0 = response.xpath('//*[@class="info w790"]/tr[1]')
+        #     tr1 = response.xpath('//*[@class="info w790"]/tr[2]')
+        #     tr2 = response.xpath('//*[@class="info w790"]/tr[3]')
+        #     tr4 = response.xpath('//*[@class="info w790"]/tr[5]')
+        #     tr5 = response.xpath('//*[@class="info w790"]/tr[6]')
+        #     tr6 = response.xpath('//*[@class="info w790"]/tr[7]')
+        #     item['url'] = response.url
+        #     item['code'] = url[-11:-5]
+        #     item['fullName'] = tr0.xpath('td[1]/text()').extract()[0]
+        #     item['name'] = tr0.xpath('td[2]/text()').extract()[0]
+        #     item['type'] = tr1.xpath('td[2]/text()').extract()[0]
+        #     item['issueDate'] = tr2.xpath('td[1]/text()').extract()[0]
+        #     item['listDate'] = tr2.xpath('td[2]/text()').extract()[0]
+        #     item['manageRate'] = tr6.xpath('td[1]/text()').extract()[0]
+        #     item['trusteeshipRate'] = tr6.xpath('td[2]/text()').extract()[0]
+        #
+        #     item['company'] = tr4.xpath('td[1]/a/text()').extract()[0]
+        #     item['manager'] = tr5.xpath('td[1]/a/text()').extract()[0]
+        #     item['bank'] = tr4.xpath('td[2]/a/text()').extract()[0]
+        #     item['bonus'] = tr5.xpath('td[2]/a/text()').extract()[0]
+        # return item
+        pass
 
 
 
