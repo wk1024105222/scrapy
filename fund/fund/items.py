@@ -5,10 +5,20 @@
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy.item import Item, Field
 
 
-class FundItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class FundBaseInfoItem(Item):
+    url = Field()
+    code = Field()
+    fullName = Field()
+    name = Field()
+    type = Field()
+    issueDate = Field()
+    listDate = Field()
+    company = Field()
+    manager = Field()
+    bank = Field()
+    bonus = Field()
+    manageRate = Field()
+    trusteeshipRate = Field()
