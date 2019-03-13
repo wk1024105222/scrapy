@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
+import re
 
 from scrapy import Spider, Request
 import sys
@@ -94,23 +95,33 @@ class FundCrawlerSpider(Spider):
         elif url.find('gmbd') >= 0:
             # 规模变动
             item = None
-            trs = response.xpath('//*[@class="w782 comm gmbd"]/tbody/tr')
+            reg = re.compile(r"<tr>"
+                             r"<td>(\d{4}-\d{2}-\d{2})</td>"
+                             r"<td class='tor'>([0-9\.-]{3,8})</td>"
+                             r"<td class='tor'>([0-9\.-]{3,8})</td>"
+                             r"<td class='tor'>([0-9\.-]{3,8})</td>"
+                             r"<td class='tor'>([0-9\.-]{3,8})</td>"
+                             r"<td class='tor'>([0-9\.\-%]{3,8})</td>"
+                             r"</tr>")
+
+            trs = re.findall(reg, response.body)
             for tr in trs:
                 try:
                     item = FundAssetsScaleItem()
                     item['url'] = url
                     item['code'] = url[-11:-5]
                     item['type'] = 'gmbd'
-                    item['date'] = tr.xpath('td[1]/text()').extract()[0]
-                    item['applyNum'] = tr.xpath('td[2]/text()').extract()[0]
-                    item['redeemNum'] = tr.xpath('td[3]/text()').extract()[0]
-                    item['totalNum'] = tr.xpath('td[4]/text()').extract()[0]
-                    item['balance'] = tr.xpath('td[5]/text()').extract()[0]
-                    item['changeRate'] = tr.xpath('td[6]/text()').extract()[0]
+                    item['date'] = tr[0]
+                    item['applyNum'] = tr[1]
+                    item['redeemNum'] = tr[2]
+                    item['totalNum'] = tr[3]
+                    item['balance'] = tr[4]
+                    item['changeRate'] = tr[5]
                     yield item
                 except Exception as e:
                     print '已解析数据' + item
                     print '解析异常' + response.url
+
         con = pool.connection()
         cursor = con.cursor()
         cursor.execute("update fund_dataurl set flag='1', size=%d where url ='%s' " % (len(trs), url))
