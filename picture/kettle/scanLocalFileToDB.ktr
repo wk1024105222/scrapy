@@ -130,6 +130,8 @@
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -143,34 +145,32 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>&#x521d;&#x59cb;&#x5316;&#x8def;&#x5f84;</from><to>&#x83b7;&#x53d6;&#x6240;&#x6709;&#x5b50;&#x76ee;&#x5f55;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 4</from><to>&#x589e;&#x52a0;&#x5e38;&#x91cf;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 4</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;</from><to>&#x66f4;&#x65b0; 2</to><enabled>N</enabled> </hop>
   <hop> <from>&#x83b7;&#x53d6;&#x6240;&#x6709;&#x5b50;&#x76ee;&#x5f55;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;</from><to>&#x8fc7;&#x6ee4;&#x6240;&#x6709;html&#x7ed3;&#x5c3e;&#x7684;&#x76ee;&#x5f55;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x83b7;&#x53d6;&#x6bcf;&#x4e2a;&#x76ee;&#x5f55;&#x7684;&#x6587;&#x4ef6;</from><to>&#x8fc7;&#x6ee4;&#x76ee;&#x5f55;&#x53ea;&#x7559;&#x6587;&#x4ef6;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x8fc7;&#x6ee4;&#x76ee;&#x5f55;&#x53ea;&#x7559;&#x6587;&#x4ef6;</from><to>&#x6240;&#x6709;&#x56fe;&#x7247;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x6240;&#x6709;&#x56fe;&#x7247;</from><to>&#x6d41;&#x67e5;&#x8be2;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x7f13;&#x5b58;&#x8868;&#x4e2d;&#x6240;&#x6709;&#x56fe;&#x7247;</from><to>&#x6d41;&#x67e5;&#x8be2;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x6d41;&#x67e5;&#x8be2;</from><to>&#x5224;&#x65ad;&#x672c;&#x5730;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#x4e8e;&#x6570;&#x636e;&#x5e93;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5224;&#x65ad;&#x672c;&#x5730;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#x4e8e;&#x6570;&#x636e;&#x5e93;</from><to>&#x8fc7;&#x6ee4;&#x72b6;&#x6001;&#x672a;&#x4e0b;&#x8f7d;&#x7684;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x72b6;&#x6001;&#x672a;&#x4e0b;&#x8f7d;&#x7684;</from><to>&#x66f4;&#x65b0;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5224;&#x65ad;&#x672c;&#x5730;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#x4e8e;&#x6570;&#x636e;&#x5e93;</from><to>&#x8fc7;&#x6ee4;&#x4ee5;.1 &#x7ed3;&#x5c3e;&#x7684;&#x91cd;&#x590d;&#x6587;&#x4ef6;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x4ee5;.1 &#x7ed3;&#x5c3e;&#x7684;&#x91cd;&#x590d;&#x6587;&#x4ef6;</from><to>JavaScript&#x4ee3;&#x7801;</to><enabled>Y</enabled> </hop>
-  <hop> <from>JavaScript&#x4ee3;&#x7801;</from><to>&#x8fc7;&#x6ee4;&#x76ee;&#x5f55;&#x53ea;&#x7559;&#x6587;&#x4ef6; 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x76ee;&#x5f55;&#x53ea;&#x7559;&#x6587;&#x4ef6; 2</from><to>&#x6240;&#x6709;&#x56fe;&#x7247; 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x4ee5;.1 &#x7ed3;&#x5c3e;&#x7684;&#x91cd;&#x590d;&#x6587;&#x4ef6;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x6240;&#x6709;&#x56fe;&#x7247; 2</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 2</from><to>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;</from><to>&#x6570;&#x636e;&#x5e93;&#x4e2d;&#x6ca1;&#x6709;&#x7684;&#x6587;&#x4ef6;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x8fc7;&#x6ee4;&#x6240;&#x6709;html&#x7ed3;&#x5c3e;&#x7684;&#x76ee;&#x5f55;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x83b7;&#x53d6;&#x6bcf;&#x4e2a;&#x76ee;&#x5f55;&#x7684;&#x6587;&#x4ef6;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 4</from><to>&#x589e;&#x52a0;&#x5e38;&#x91cf;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;</from><to>&#x66f4;&#x65b0; 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 4</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x66f4;&#x65b0;</from><to>&#x963b;&#x585e;&#x6570;&#x636e;&#x76f4;&#x5230;&#x6b65;&#x9aa4;&#x90fd;&#x5b8c;&#x6210;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x963b;&#x585e;&#x6570;&#x636e;&#x76f4;&#x5230;&#x6b65;&#x9aa4;&#x90fd;&#x5b8c;&#x6210;</from><to>&#x6267;&#x884c;SQL&#x811a;&#x672c;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x68c0;&#x67e5;&#x662f;&#x5426;&#x5df2;&#x4e0b;&#x8f7d;</from><to>&#x8fc7;&#x6ee4;&#x76ee;&#x5f55;&#x53ea;&#x7559;&#x6587;&#x4ef6; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5224;&#x65ad;&#x672c;&#x5730;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#x4e8e;&#x6570;&#x636e;&#x5e93;</from><to>&#x8fc7;&#x6ee4;&#x4ee5;.1 &#x7ed3;&#x5c3e;&#x7684;&#x91cd;&#x590d;&#x6587;&#x4ef6;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 2</from><to>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x6240;&#x6709;&#x56fe;&#x7247; 2</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;</from><to>&#x6570;&#x636e;&#x5e93;&#x4e2d;&#x6ca1;&#x6709;&#x7684;&#x6587;&#x4ef6;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7f13;&#x5b58;&#x8868;&#x4e2d;&#x6240;&#x6709;&#x56fe;&#x7247;</from><to>&#x6d41;&#x67e5;&#x8be2;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x4ee5;.1 &#x7ed3;&#x5c3e;&#x7684;&#x91cd;&#x590d;&#x6587;&#x4ef6;</from><to>&#x68c0;&#x67e5;&#x662f;&#x5426;&#x5df2;&#x4e0b;&#x8f7d;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x4ee5;.1 &#x7ed3;&#x5c3e;&#x7684;&#x91cd;&#x590d;&#x6587;&#x4ef6;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x76ee;&#x5f55;&#x53ea;&#x7559;&#x6587;&#x4ef6; 2</from><to>&#x6240;&#x6709;&#x56fe;&#x7247; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x521d;&#x59cb;&#x5316;&#x8def;&#x5f84;</from><to>&#x83b7;&#x53d6;&#x6240;&#x6709;&#x5b50;&#x76ee;&#x5f55;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x6d41;&#x67e5;&#x8be2;</from><to>&#x5224;&#x65ad;&#x672c;&#x5730;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#x4e8e;&#x6570;&#x636e;&#x5e93;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x6240;&#x6709;&#x56fe;&#x7247;</from><to>JavaScript&#x4ee3;&#x7801; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>JavaScript&#x4ee3;&#x7801; 2</from><to>&#x6d41;&#x67e5;&#x8be2;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5224;&#x65ad;&#x672c;&#x5730;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#x4e8e;&#x6570;&#x636e;&#x5e93;</from><to>&#x66f4;&#x65b0;</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>JavaScript&#x4ee3;&#x7801;</name>
+    <name>&#x68c0;&#x67e5;&#x662f;&#x5426;&#x5df2;&#x4e0b;&#x8f7d;</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -193,8 +193,32 @@
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1008</xloc>
+      <xloc>1024</xloc>
       <yloc>240</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>JavaScript&#x4ee3;&#x7801; 2</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;if&#x28;size &#x3d;&#x3d; 0&#x29; &#xd;&#xa;&#x7b;&#xd;&#xa;	flag &#x3d; &#x22;4&#x22;&#xd;&#xa;&#x7d;&#xd;&#xa;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>656</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -218,7 +242,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>V&#x3a;&#x5c;20180619</nullif>
+        <nullif>V&#x3a;&#x5c;picture&#x5c;20181006https</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -242,7 +266,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>1</nullif>
+        <nullif>9</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -272,7 +296,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>&#x8fc7;&#x6ee4;&#x72b6;&#x6001;&#x672a;&#x4e0b;&#x8f7d;&#x7684;</send_true_to>
+<send_true_to>&#x66f4;&#x65b0;</send_true_to>
 <send_false_to>&#x8fc7;&#x6ee4;&#x4ee5;.1 &#x7ed3;&#x5c3e;&#x7684;&#x91cd;&#x590d;&#x6587;&#x4ef6;</send_false_to>
     <compare>
 <condition>
@@ -284,8 +308,41 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>880</xloc>
+      <xloc>896</xloc>
       <yloc>128</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>flag</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>528</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -368,8 +425,68 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>880</xloc>
+      <xloc>896</xloc>
       <yloc>336</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>type1</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>pagepath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>pageid</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>downflag</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>336</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 4</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>pageid</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>448</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -408,7 +525,7 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>608</xloc>
+      <xloc>544</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
@@ -456,7 +573,7 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1136</xloc>
+      <xloc>1152</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
       </GUI>
@@ -490,7 +607,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>880</xloc>
+      <xloc>896</xloc>
       <yloc>400</yloc>
       <draw>Y</draw>
       </GUI>
@@ -566,7 +683,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>880</xloc>
+      <xloc>896</xloc>
       <yloc>464</yloc>
       <draw>Y</draw>
       </GUI>
@@ -615,8 +732,47 @@
       </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1232</xloc>
+      <xloc>1152</xloc>
       <yloc>128</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x66f4;&#x65b0; 2</name>
+    <type>Update</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>wkai</connection>
+    <skip_lookup>N</skip_lookup>
+    <commit>100</commit>
+    <use_batch>N</use_batch>
+    <error_ignored>N</error_ignored>
+    <ignore_flag_field/>
+    <lookup>
+      <schema/>
+      <table>dagaierpage</table>
+      <key>
+        <name>pageid</name>
+        <field>pageid</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+        </key>
+      <value>
+        <name>flag</name>
+        <rename>flag</rename>
+        </value>
+      </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>640</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -661,7 +817,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>688</xloc>
+      <xloc>768</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
@@ -687,7 +843,7 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>688</xloc>
+      <xloc>768</xloc>
       <yloc>16</yloc>
       <draw>Y</draw>
       </GUI>
@@ -754,7 +910,7 @@
     </file>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>400</xloc>
+      <xloc>336</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
@@ -771,7 +927,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>JavaScript&#x4ee3;&#x7801;</send_true_to>
+<send_true_to>&#x68c0;&#x67e5;&#x662f;&#x5426;&#x5df2;&#x4e0b;&#x8f7d;</send_true_to>
 <send_false_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 2</send_false_to>
     <compare>
 <condition>
@@ -795,7 +951,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>880</xloc>
+      <xloc>896</xloc>
       <yloc>240</yloc>
       <draw>Y</draw>
       </GUI>
@@ -831,47 +987,6 @@
     </step>
 
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x72b6;&#x6001;&#x672a;&#x4e0b;&#x8f7d;&#x7684;</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to/>
-<send_false_to/>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>downflag</leftvalue>
-   <function>IS NULL</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>html</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>OR</operator>
-   <leftvalue>downflag</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1072</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>&#x8fc7;&#x6ee4;&#x76ee;&#x5f55;&#x53ea;&#x7559;&#x6587;&#x4ef6;</name>
     <type>FilterRows</type>
     <description/>
@@ -894,7 +1009,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
+      <xloc>448</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
@@ -923,201 +1038,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1136</xloc>
+      <xloc>1152</xloc>
       <yloc>240</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>type1</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>pagepath</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>pageid</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>downflag</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>400</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x66f4;&#x65b0; 2</name>
-    <type>Update</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>wkai</connection>
-    <skip_lookup>N</skip_lookup>
-    <commit>100</commit>
-    <use_batch>N</use_batch>
-    <error_ignored>N</error_ignored>
-    <ignore_flag_field/>
-    <lookup>
-      <schema/>
-      <table>dagaierpage</table>
-      <key>
-        <name>pageid</name>
-        <field>pageid</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-        </key>
-      <value>
-        <name>flag</name>
-        <rename>flag</rename>
-        </value>
-      </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>672</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 4</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>pageid</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>flag</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>2</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>592</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x6267;&#x884c;SQL&#x811a;&#x672c;</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>wkai</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>update dagaierpage n set n.flag&#x3d;&#x27;9&#x27; where n.PAGEID in &#x28;&#xd;&#xa;select PAGEID from &#x28;&#xd;&#xa;	select d.PAGEID from dagaierpage d ,&#x28;select t.PAGEID,count&#x28;1&#x29; tmp from dagaierpic t where t.flag&#x3d;&#x27;1&#x27; group by t.PAGEID&#x29; m &#xd;&#xa;	where d.PAGEID&#x3d;m.PAGEID and m.tmp&#x3e;&#x3d;d.NUM&#xd;&#xa;	&#x29; k &#x29; &#xd;&#xa;and n.flag in &#x28;&#x27;0&#x27;,&#x27;1&#x27;&#x29;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1376</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x963b;&#x585e;&#x6570;&#x636e;&#x76f4;&#x5230;&#x6b65;&#x9aa4;&#x90fd;&#x5b8c;&#x6210;</name>
-    <type>BlockUntilStepsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <steps>
-      <step>
-        <name>&#x66f4;&#x65b0;</name>
-        <CopyNr>0</CopyNr>
-        </step>
-      <step>
-        <name>&#x66f4;&#x65b0; 2</name>
-        <CopyNr>0</CopyNr>
-        </step>
-      </steps>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1312</xloc>
-      <yloc>48</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

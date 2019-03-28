@@ -77,12 +77,12 @@
   <connection>
     <name>wkai</name>
     <server>127.0.0.1</server>
-    <type>ORACLE</type>
+    <type>MYSQL</type>
     <access>Native</access>
     <database>wkai</database>
-    <port>1521</port>
-    <username>wkai</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce10c999aed3</password>
+    <port>3306</port>
+    <username>root</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -90,9 +90,10 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
       <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -101,7 +102,6 @@
   <order>
   <hop> <from>&#x8868;&#x8f93;&#x5165; 2</from><to>JavaScript&#x4ee3;&#x7801;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x8868;&#x8f93;&#x5165; 2</from><to>JavaScript&#x4ee3;&#x7801; 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8868;&#x8f93;&#x5165;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;</to><enabled>Y</enabled> </hop>
   <hop> <from>JavaScript&#x4ee3;&#x7801; 2</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 2</to><enabled>Y</enabled> </hop>
   <hop> <from>JavaScript&#x4ee3;&#x7801;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 2</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 2</from><to>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;</to><enabled>Y</enabled> </hop>
@@ -110,19 +110,22 @@
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa; 2</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa; 2 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa; 2 2 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa; 2 2 2 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa; 2 2 2</to><enabled>N</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa; 2 2 2 2</to><enabled>N</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa; 3</to><enabled>N</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa; 2 3</to><enabled>N</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa; 2 2 3</to><enabled>N</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa; 2 2 3 2</to><enabled>N</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa; 2 2 3 3</to><enabled>N</enabled> </hop>
-  <hop> <from>&#x8868;&#x8f93;&#x5165; 3</from><to>&#x6d41;&#x67e5;&#x8be2;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5206;&#x7ec4;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 4</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 4</from><to>&#x6d41;&#x67e5;&#x8be2;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x6392;&#x5e8f;&#x8bb0;&#x5f55; 2</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x6d41;&#x67e5;&#x8be2;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;</from><to>&#x6392;&#x5e8f;&#x8bb0;&#x5f55; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 4</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x4ece;&#x7ed3;&#x679c;&#x83b7;&#x53d6;&#x8bb0;&#x5f55;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</from><to>&#x8868;&#x8f93;&#x5165; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</from><to>&#x8868;&#x8f93;&#x5165;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8868;&#x8f93;&#x5165;</from><to>&#x589e;&#x52a0;&#x5e8f;&#x5217;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x589e;&#x52a0;&#x5e8f;&#x5217;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x81ea;&#x5b9a;&#x4e49;&#x5e38;&#x91cf;&#x6570;&#x636e;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;</to><enabled>N</enabled> </hop>
   </order>
   <step>
     <name>JavaScript&#x4ee3;&#x7801;</name>
@@ -154,7 +157,7 @@
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>160</xloc>
+      <xloc>400</xloc>
       <yloc>176</yloc>
       <draw>Y</draw>
       </GUI>
@@ -190,8 +193,31 @@
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>160</xloc>
+      <xloc>400</xloc>
       <yloc>64</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x4ece;&#x7ed3;&#x679c;&#x83b7;&#x53d6;&#x8bb0;&#x5f55;</name>
+    <type>RowsFromResult</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>taskid</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>32</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -230,8 +256,37 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>464</xloc>
+      <xloc>704</xloc>
       <yloc>192</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x589e;&#x52a0;&#x5e8f;&#x5217;</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <valuename>rownum</valuename>
+      <use_database>N</use_database>
+      <connection>wkai</connection>
+      <schema/>
+      <seqname>SEQ_</seqname>
+      <use_counter>Y</use_counter>
+      <counter_name/>
+      <start_at>1</start_at>
+      <increment_by>1</increment_by>
+      <max_value>999999999</max_value>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>400</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -251,7 +306,7 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>NO</name>
+      </field>      <field>        <name>rownum</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -260,9 +315,24 @@
         <length>-2</length>
         <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
+      <meta>        <name>rownum</name>
+        <rename>NO</rename>
+        <type>BigNumber</type>
+        <length>-2</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>256</xloc>
+      <xloc>496</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
       </GUI>
@@ -294,7 +364,7 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>256</xloc>
+      <xloc>496</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
       </GUI>
@@ -346,7 +416,7 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>528</xloc>
+      <xloc>800</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
       </GUI>
@@ -386,41 +456,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>368</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x6392;&#x5e8f;&#x8bb0;&#x5f55; 2</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>SORTID</name>
-        <ascending>N</ascending>
-        <case_sensitive>N</case_sensitive>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>768</xloc>
+      <xloc>608</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
       </GUI>
@@ -451,7 +487,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>D&#x3a;&#x5c;Workspaces_python&#x5c;scrapy&#x5c;dagaier&#x5c;20180513_1-13&#x5c;&#x811a;&#x672c;&#x5c;1</name>
+      <name>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;&#x811a;&#x672c;&#x5c;1</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
@@ -484,8 +520,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>976</xloc>
-      <yloc>64</yloc>
+      <xloc>1056</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -515,7 +551,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>D&#x3a;&#x5c;Workspaces_python&#x5c;scrapy&#x5c;dagaier&#x5c;20180513_1-13&#x5c;&#x811a;&#x672c;&#x5c;2</name>
+      <name>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;&#x811a;&#x672c;&#x5c;2</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
@@ -548,8 +584,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>976</xloc>
-      <yloc>128</yloc>
+      <xloc>1056</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -579,7 +615,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>D&#x3a;&#x5c;Workspaces_python&#x5c;scrapy&#x5c;dagaier&#x5c;20180513_1-13&#x5c;&#x811a;&#x672c;&#x5c;3</name>
+      <name>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;&#x811a;&#x672c;&#x5c;3</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
@@ -612,8 +648,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>976</xloc>
-      <yloc>192</yloc>
+      <xloc>1056</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -643,7 +679,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>D&#x3a;&#x5c;Workspaces_python&#x5c;scrapy&#x5c;dagaier&#x5c;20180513_1-13&#x5c;&#x811a;&#x672c;&#x5c;4</name>
+      <name>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;&#x811a;&#x672c;&#x5c;4</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
@@ -676,8 +712,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>976</xloc>
-      <yloc>256</yloc>
+      <xloc>1056</xloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -707,7 +743,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>D&#x3a;&#x5c;Workspaces_python&#x5c;scrapy&#x5c;dagaier&#x5c;20180513_1-13&#x5c;&#x811a;&#x672c;&#x5c;5</name>
+      <name>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;&#x811a;&#x672c;&#x5c;5</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
@@ -740,8 +776,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>976</xloc>
-      <yloc>320</yloc>
+      <xloc>1056</xloc>
+      <yloc>576</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -771,7 +807,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>D&#x3a;&#x5c;Workspaces_python&#x5c;scrapy&#x5c;dagaier&#x5c;20180513_1-13&#x5c;&#x811a;&#x672c;&#x5c;8</name>
+      <name>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;&#x811a;&#x672c;&#x5c;8</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
@@ -804,8 +840,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1120</xloc>
-      <yloc>192</yloc>
+      <xloc>688</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -835,7 +871,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>D&#x3a;&#x5c;Workspaces_python&#x5c;scrapy&#x5c;dagaier&#x5c;20180513_1-13&#x5c;&#x811a;&#x672c;&#x5c;9</name>
+      <name>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;&#x811a;&#x672c;&#x5c;9</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
@@ -868,8 +904,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1120</xloc>
-      <yloc>256</yloc>
+      <xloc>688</xloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -899,7 +935,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>D&#x3a;&#x5c;Workspaces_python&#x5c;scrapy&#x5c;dagaier&#x5c;20180513_1-13&#x5c;&#x811a;&#x672c;&#x5c;10</name>
+      <name>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;&#x811a;&#x672c;&#x5c;10</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
@@ -932,8 +968,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1120</xloc>
-      <yloc>320</yloc>
+      <xloc>688</xloc>
+      <yloc>576</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -963,7 +999,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>D&#x3a;&#x5c;Workspaces_python&#x5c;scrapy&#x5c;dagaier&#x5c;20180513_1-13&#x5c;&#x811a;&#x672c;&#x5c;7</name>
+      <name>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;&#x811a;&#x672c;&#x5c;7</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
@@ -996,8 +1032,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1120</xloc>
-      <yloc>128</yloc>
+      <xloc>688</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1027,7 +1063,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>D&#x3a;&#x5c;Workspaces_python&#x5c;scrapy&#x5c;dagaier&#x5c;20180513_1-13&#x5c;&#x811a;&#x672c;&#x5c;6</name>
+      <name>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;&#x811a;&#x672c;&#x5c;6</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
@@ -1060,44 +1096,62 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1136</xloc>
-      <yloc>64</yloc>
+      <xloc>688</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x6d41;&#x67e5;&#x8be2;</name>
-    <type>StreamLookup</type>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</name>
+    <type>Dummy</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <from>&#x8868;&#x8f93;&#x5165; 3</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>Y</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>PAGEID</name>
-        <field>ID</field>
-      </key>
-      <value>
-        <name>SORTID</name>
-        <rename>SORTID</rename>
-        <default/>
-        <type>String</type>
-      </value>
-    </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>608</xloc>
-      <yloc>192</yloc>
+      <xloc>208</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x81ea;&#x5b9a;&#x4e49;&#x5e38;&#x91cf;&#x6570;&#x636e;</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>taskid</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <data>
+      <line> <item>c47376f4d60d497e9ce2aae4a1e98deb</item> </line>
+    </data>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>32</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1114,15 +1168,15 @@
            <schema_name/>
            </partitioning>
     <connection>wkai</connection>
-    <sql>select t.&#x2a;,rownum no from &#x28;&#xd;&#xa;select &#xd;&#xa;a.pageid,&#x27;wget --no-check-certificate --tries&#x3d;1 &#x27;&#x7c;&#x7c;a.URL script &#xd;&#xa;from DAGAIERpic a &#xd;&#xa;join DAGAIERPAGE b on a.PAGEID&#x3d;b.PAGEID &#xd;&#xa;where  a.FLAG&#x3d;&#x27;0&#x27; order by b.CREATETIME&#x29; t</sql>
+    <sql>select a.pageid,CONCAT&#x28;&#x27;wget --no-check-certificate --tries&#x3d;1 &#x27;,a.URL&#x29; script from DAGAIERpic a &#xd;&#xa;join DAGAIERPAGE b on a.PAGEID&#x3d;b.PAGEID &#xd;&#xa;where  a.FLAG&#x3c;&#x3e;&#x27;9&#x27; and a.FLAG&#x3c;&#x3e;&#x27;4&#x27; and b.taskid&#x3d;&#x3f; order by a.pageid desc,a.PICID</sql>
     <limit>0</limit>
-    <lookup/>
+    <lookup>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</lookup>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>48</xloc>
+      <xloc>288</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1140,42 +1194,16 @@
            <schema_name/>
            </partitioning>
     <connection>wkai</connection>
-    <sql>select &#xd;&#xa;distinct a.PAGEID &#xd;&#xa;from DAGAIERpic a ,DAGAIERPAGE b where a.PAGEID&#x3d;b.PAGEID  and a.FLAG&#x3d;&#x27;0&#x27;</sql>
+    <sql>select &#xd;&#xa;distinct a.PAGEID &#xd;&#xa;from DAGAIERpic a ,DAGAIERPAGE b where a.PAGEID&#x3d;b.PAGEID  and a.FLAG&#x3c;&#x3e;&#x27;9&#x27; and a.FLAG&#x3c;&#x3e;&#x27;4&#x27; and b.taskid&#x3d;&#x3f;</sql>
     <limit>0</limit>
-    <lookup/>
+    <lookup>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</lookup>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>64</xloc>
+      <xloc>288</xloc>
       <yloc>112</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x8868;&#x8f93;&#x5165; 3</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>wkai</connection>
-    <sql>select &#x2a; from DAGAIERSORT  order by sortid desc</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>608</xloc>
-      <yloc>80</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1196,15 +1224,15 @@
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>SORTID</leftvalue>
+ <leftvalue>taskid</leftvalue>
  <function>IS NOT NULL</function>
  <rightvalue/>
  </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>672</xloc>
-      <yloc>192</yloc>
+      <xloc>128</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

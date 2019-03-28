@@ -97,7 +97,7 @@
     </notepad>
     <notepad>
       <note>&#x9875;&#x9762;&#x4fe1;&#x606f;&#x5165;&#x5e93;</note>
-      <xloc>1232</xloc>
+      <xloc>1328</xloc>
       <yloc>192</yloc>
       <width>82</width>
       <heigth>26</heigth>
@@ -119,7 +119,7 @@
     <notepad>
       <note>&#x56fe;&#x7247;&#x4fe1;&#x606f;&#x5165;&#x5e93;</note>
       <xloc>1216</xloc>
-      <yloc>416</yloc>
+      <yloc>464</yloc>
       <width>82</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -144,7 +144,7 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>wkai</database>
-    <port>3306</port>
+    <port>3308</port>
     <username>root</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername/>
@@ -154,7 +154,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3308</attribute></attribute>
       <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
@@ -164,28 +164,24 @@
     </attributes>
   </connection>
   <order>
+  <hop> <from>&#x963b;&#x585e;&#x5230;&#x6570;&#x636e;&#x5165;&#x5e93;&#x7ed3;&#x675f;</from><to>&#x590d;&#x5236;&#x8bb0;&#x5f55;&#x5230;&#x7ed3;&#x679c;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x751f;&#x6210;UUID 2</from><to>&#x963b;&#x585e;&#x5230;&#x6570;&#x636e;&#x5165;&#x5e93;&#x7ed3;&#x675f;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;</from><to>pageid&#x6392;&#x5e8f;</to><enabled>Y</enabled> </hop>
   <hop> <from>pageid&#x6392;&#x5e8f;</from><to>pageid&#x5206;&#x7ec4;</to><enabled>Y</enabled> </hop>
   <hop> <from>pageid&#x5206;&#x7ec4;</from><to>&#x8fc7;&#x6ee4;&#x5b58;&#x5728;&#x91cd;&#x590d;&#x7684;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x8fc7;&#x6ee4;&#x5b58;&#x5728;&#x91cd;&#x590d;&#x7684;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Json &#x8f93;&#x5165;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;</to><enabled>N</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 4</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x8868;&#x8f93;&#x51fa;-&#x56fe;&#x7247;&#x8868;</to><enabled>Y</enabled> </hop>
   <hop> <from>picurls_Json</from><to>pageid&#x6392;&#x5e8f; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</from><to>&#x8868;&#x8f93;&#x51fa;-&#x56fe;&#x7247;&#x8868;</to><enabled>Y</enabled> </hop>
   <hop> <from>pageid&#x6392;&#x5e8f; 2</from><to>pageid&#x5206;&#x7ec4;&#x8ba1;&#x6570;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x83b7;&#x53d6;&#x56fe;&#x7247;&#x6570;&#x91cf;</from><to>&#x8868;&#x8f93;&#x51fa;-&#x9875;&#x9762;&#x8868;</to><enabled>Y</enabled> </hop>
   <hop> <from>pageid&#x5206;&#x7ec4;&#x8ba1;&#x6570;</from><to>&#x83b7;&#x53d6;&#x56fe;&#x7247;&#x6570;&#x91cf;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55; 2</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55; 2</from><to>picurls_Json</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x7f13;&#x5b58;&#x6240;&#x6709;&#x9875;&#x9762;</from><to>&#x6d41;&#x67e5;&#x8be2; 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x6d41;&#x67e5;&#x8be2; 2</from><to>&#x8fc7;&#x6ee4;&#x8868;&#x91cc;&#x6ca1;&#x6709;&#x7684;&#x9875;&#x9762;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x539f;&#x59cb;Json</from><to>&#x6d41;&#x67e5;&#x8be2; 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x8868;&#x91cc;&#x6ca1;&#x6709;&#x7684;&#x9875;&#x9762;</from><to>sysdate</to><enabled>Y</enabled> </hop>
   <hop> <from>sysdate</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 4</from><to>&#x6d41;&#x67e5;&#x8be2; 2 2</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 2</from><to>&#x6d41;&#x67e5;&#x8be2; 2 2</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x6d41;&#x67e5;&#x8be2; 2 2</from><to>&#x8fc7;&#x6ee4;&#x6389;&#x5b58;&#x5728;&#x91cd;&#x590d;&#x7684;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x6389;&#x5b58;&#x5728;&#x91cd;&#x590d;&#x7684;</from><to>&#x83b7;&#x53d6;&#x56fe;&#x7247;&#x6570;&#x91cf;</to><enabled>Y</enabled> </hop>
+  <hop> <from>sysdate</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 2</from><to>&#x6253;&#x5370;&#x91cd;&#x590d;&#x7684;pageid</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x7f13;&#x5b58;&#x8868;&#x4e2d;&#x6240;&#x6709;&#x56fe;&#x7247;</from><to>&#x6d41;&#x67e5;&#x8be2; 2 2 2</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x751f;&#x6210;UUID</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9; 3</to><enabled>Y</enabled> </hop>
@@ -193,108 +189,19 @@
   <hop> <from>&#x83b7;&#x53d6;picid</from><to>&#x6d41;&#x67e5;&#x8be2; 2 2 2</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x6d41;&#x67e5;&#x8be2; 2 2 2</from><to>&#x8fc7;&#x6ee4;&#x8868;&#x4e2d;&#x4e0d;&#x5b58;&#x5728;&#x56fe;&#x7247;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x8fc7;&#x6ee4;&#x8868;&#x4e2d;&#x4e0d;&#x5b58;&#x5728;&#x56fe;&#x7247;</from><to>&#x751f;&#x6210;UUID</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x751f;&#x6210;&#x8bb0;&#x5f55;</from><to>&#x751f;&#x6210;UUID 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;</from><to>&#x8868;&#x8f93;&#x51fa;-&#x9875;&#x9762;&#x8868;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8bb0;&#x5f55;&#x5173;&#x8054; &#x28;&#x7b1b;&#x5361;&#x5c14;&#x8f93;&#x51fa;&#x29;</from><to>&#x589e;&#x52a0;&#x5e38;&#x91cf;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;</from><to>&#x8868;&#x8f93;&#x51fa;-&#x9875;&#x9762;&#x8868;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7f13;&#x5b58;&#x6240;&#x6709;&#x9875;&#x9762;</from><to>&#x6d41;&#x67e5;&#x8be2; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x6d41;&#x67e5;&#x8be2; 2</from><to>&#x8fc7;&#x6ee4;&#x8868;&#x91cc;&#x6ca1;&#x6709;&#x7684;&#x9875;&#x9762;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x539f;&#x59cb;Json</from><to>&#x6d41;&#x67e5;&#x8be2; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8868;&#x91cc;&#x6ca1;&#x6709;&#x7684;&#x9875;&#x9762;</from><to>sysdate</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x539f;&#x59cb;Json</from><to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x83b7;&#x53d6;&#x56fe;&#x7247;&#x6570;&#x91cf;</from><to>&#x8bb0;&#x5f55;&#x5173;&#x8054; &#x28;&#x7b1b;&#x5361;&#x5c14;&#x8f93;&#x51fa;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x6389;&#x5b58;&#x5728;&#x91cd;&#x590d;&#x7684;</from><to>&#x83b7;&#x53d6;&#x56fe;&#x7247;&#x6570;&#x91cf;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x751f;&#x6210;UUID 2</from><to>&#x8bb0;&#x5f55;&#x5173;&#x8054; &#x28;&#x7b1b;&#x5361;&#x5c14;&#x8f93;&#x51fa;&#x29;</to><enabled>Y</enabled> </hop>
   </order>
-  <step>
-    <name>Json &#x8f93;&#x5165;</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>Y</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>N</ignoreMissingPath>
-    <rownum_field>linenum</rownum_field>
-    <file>
-      <name>C&#x3a;&#x5c;Users&#x5c;wkai&#x5c;Desktop&#x5c;dagaier.json</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>url</name>
-        <path>&#x24;..data&#x5b;&#x2a;&#x5d;.url</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>pictures</name>
-        <path>&#x24;..data&#x5b;&#x2a;&#x5d;.pictures</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>name</name>
-        <path>&#x24;..data&#x5b;&#x2a;&#x5d;.name</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>id</name>
-        <path>&#x24;..data&#x5b;&#x2a;&#x5d;.id</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>N</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField/>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>320</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
   <step>
     <name>pageid&#x5206;&#x7ec4;</name>
     <type>GroupBy</type>
@@ -342,7 +249,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>528</xloc>
-      <yloc>80</yloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -382,7 +289,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>944</xloc>
-      <yloc>320</yloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -416,7 +323,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>416</xloc>
-      <yloc>80</yloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -450,7 +357,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>736</xloc>
-      <yloc>320</yloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -512,7 +419,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>528</xloc>
-      <yloc>320</yloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -546,7 +453,7 @@
     <name>&#x539f;&#x59cb;Json</name>
     <type>JsonInput</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
@@ -563,7 +470,7 @@
     <ignoreMissingPath>N</ignoreMissingPath>
     <rownum_field>linenum</rownum_field>
     <file>
-      <name>D&#x3a;&#x5c;Workspaces_python&#x5c;scrapy&#x5c;dagaier&#x5c;data&#x5c;20180702_1-7&#x9875;&#x5c;dagaier_spider.json</name>
+      <name>D&#x3a;&#x5c;Workspaces_python&#x5c;scrapy&#x5c;picture&#x5c;data&#x5c;json&#x5c;20190125&#x5c;picture_spider.json</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -626,7 +533,7 @@
     <limit>0</limit>
     <IsInFields>N</IsInFields>
     <IsAFile>N</IsAFile>
-    <valueField/>
+    <valueField>filename</valueField>
     <shortFileFieldName/>
     <pathFieldName/>
     <hiddenFieldName/>
@@ -639,6 +546,58 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>32</xloc>
       <yloc>208</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>flag</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1184</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x590d;&#x5236;&#x8bb0;&#x5f55;&#x5230;&#x7ed3;&#x679c;</name>
+    <type>RowsToResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1408</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -718,7 +677,7 @@
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>736</xloc>
-      <yloc>80</yloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -758,7 +717,7 @@
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>944</xloc>
-      <yloc>416</yloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -818,7 +777,83 @@
       </jsScript>    </jsScripts>    <fields>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>848</xloc>
-      <yloc>80</yloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x51fa;</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>&#x3b;</separator>
+    <enclosure>&#x2019;</enclosure>
+    <enclosure_forced>Y</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>GBK</encoding>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>D&#x3a;&#x5c;Workspaces_python&#x5c;scrapy&#x5c;picture&#x5c;file</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>name</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>32</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -882,7 +917,7 @@
       </key>
       <value>
         <name>count</name>
-        <rename>flag</rename>
+        <rename>flagtmp</rename>
         <default/>
         <type>String</type>
       </value>
@@ -930,7 +965,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>624</xloc>
-      <yloc>416</yloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -955,7 +990,58 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>832</xloc>
-      <yloc>416</yloc>
+      <yloc>464</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x751f;&#x6210;UUID 2</name>
+    <type>RandomValue</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>taskid</name>
+        <type>random machmacmd5</type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1072</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x751f;&#x6210;&#x8bb0;&#x5f55;</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+    </fields>
+    <limit>1</limit>
+    <never_ending>N</never_ending>
+    <interval_in_ms>5000</interval_in_ms>
+    <row_time_field>now</row_time_field>
+    <last_time_field>FiveSecondsAgo</last_time_field>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>960</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1007,7 +1093,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>624</xloc>
-      <yloc>512</yloc>
+      <yloc>576</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1043,7 +1129,7 @@
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>528</xloc>
-      <yloc>416</yloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1137,7 +1223,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1136</xloc>
-      <yloc>416</yloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1191,10 +1277,49 @@
           <column_name>createtime</column_name>
           <stream_name>createtime</stream_name>
         </field>
+        <field>
+          <column_name>taskid</column_name>
+          <stream_name>taskid</stream_name>
+        </field>
+        <field>
+          <column_name>FLAG</column_name>
+          <stream_name>flag</stream_name>
+        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1136</xloc>
+      <xloc>1280</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x8bb0;&#x5f55;&#x5173;&#x8054; &#x28;&#x7b1b;&#x5361;&#x5c14;&#x8f93;&#x51fa;&#x29;</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <cache_size>500</cache_size>
+      <main>&#x83b7;&#x53d6;&#x56fe;&#x7247;&#x6570;&#x91cf;</main>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue/>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1072</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1224,7 +1349,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>624</xloc>
-      <yloc>80</yloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1245,7 +1370,7 @@
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>flag</leftvalue>
+ <leftvalue>flagtmp</leftvalue>
  <function>IS NULL</function>
  <rightvalue/>
  </condition>
@@ -1282,7 +1407,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>736</xloc>
-      <yloc>416</yloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1340,7 +1465,36 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>416</xloc>
-      <yloc>320</yloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x963b;&#x585e;&#x5230;&#x6570;&#x636e;&#x5165;&#x5e93;&#x7ed3;&#x675f;</name>
+    <type>BlockUntilStepsFinish</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <steps>
+      <step>
+        <name>&#x8868;&#x8f93;&#x51fa;-&#x56fe;&#x7247;&#x8868;</name>
+        <CopyNr>0</CopyNr>
+        </step>
+      <step>
+        <name>&#x8868;&#x8f93;&#x51fa;-&#x9875;&#x9762;&#x8868;</name>
+        <CopyNr>0</CopyNr>
+        </step>
+      </steps>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1296</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
