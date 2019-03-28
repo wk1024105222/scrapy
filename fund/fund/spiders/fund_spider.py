@@ -109,7 +109,7 @@ class FundCrawlerSpider(Spider):
                 try:
                     item = FundAssetsScaleItem()
                     item['url'] = url
-                    item['code'] = url[-11:-5]
+                    item['code'] = url[-6:]
                     item['type'] = 'gmbd'
                     item['date'] = tr[0]
                     item['applyNum'] = tr[1]
