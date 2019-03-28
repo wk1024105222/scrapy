@@ -47,3 +47,10 @@ Temporary Items
 .apdisk
 
 *.pyc
+*.html.txt
+
+gzlibrary/data
+gzlibrary/kettle/error.log
+picture/data
+picture/kettle/downPicSingle.ktr
+zolnotebook/data
