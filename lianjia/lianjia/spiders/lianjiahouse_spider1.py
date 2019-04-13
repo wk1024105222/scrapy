@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
-import scrapy
-from scrapy.contrib.linkextractors import LinkExtractor
-from scrapy.contrib.spiders import CrawlSpider, Rule
-from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 
 from scrapy import Spider
-from lianjia.items import HouseItem
+from lianjia.items import SellHouseItem
 import sys
 
-sys.stdout=open('output.txt','w') #将打印信息输出在相应的位置下
-
+# sys.stdout=open('output.txt','w') #将打印信息输出在相应的位置下
 
 class StackCrawlerSpider(Spider):
     '''
@@ -25,7 +20,7 @@ class StackCrawlerSpider(Spider):
         items = []
         count=0
         for house in houses:
-            item = HouseItem()
+            item = SellHouseItem()
             try:
                 item['url'] = house.xpath('h2/a/@href').extract()[0]
             except Exception as e:

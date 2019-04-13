@@ -1,14 +1,7 @@
 # -*- coding: utf-8 -*-
-import logging
 
 from scrapy import Spider
-from lianjia.items import HouseItem, XiaoquItem
-
-logging.basicConfig(level=logging.INFO,
-                filemode='w',
-                format='%(asctime)s %(thread)d [line:%(lineno)d] [%(threadName)s] %(levelname)s %(message)s',
-                datefmt='%a, %d %b %Y %H:%M:%S',
-                filename='lianjiaxiaoqu_spider.log')
+from lianjia.items import SellHouseItem, XiaoquItem
 
 quyu=['tianhe','yuexiu','liwan','haizhu','fanyu','baiyun','huangpugz','conghua','zengcheng','huadou','nansha']
 pagesize=[38,45,31,40,39,32,11,3,10,19,5]
@@ -17,7 +10,6 @@ urls=[]
 for num in range(0,11,1):
     for b in range(1,pagesize[num]+1,1):
         urls.append('https://gz.lianjia.com/xiaoqu/%s/pg%s/' % (quyu[num],b))
-
 
 class StackCrawlerSpider(Spider):
     '''

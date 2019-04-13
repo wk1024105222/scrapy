@@ -1,17 +1,10 @@
 # -*- coding: utf-8 -*-
-import logging
-import scrapy
+
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 
-from lianjia.items import HouseItem
+from lianjia.items import SellHouseItem
 import sys
-
-logging.basicConfig(level=logging.INFO,
-                filemode='w',
-                format='%(asctime)s %(thread)d [line:%(lineno)d] [%(threadName)s] %(levelname)s %(message)s',
-                datefmt='%a, %d %b %Y %H:%M:%S',
-                filename='lianjiahouse_crawler.log')
 
 # sys.stdout=open('output.txt','w') #将打印信息输出在相应的位置下
 #    V2.0 遍历组合多种查询条件  生成url填充start_urls
@@ -69,7 +62,7 @@ class LianjiaHouseCrawlerSpider(CrawlSpider):
 
     def parse_item(self, response):
         print response.url
-        item = HouseItem()
+        item = SellHouseItem()
         try:
             item['url'] = response.url
         except Exception as e:
