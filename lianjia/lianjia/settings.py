@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import time
+
 # Scrapy settings for lianjia project
 #
 # For simplicity, this file contains only settings considered important or
@@ -94,3 +96,10 @@ DEFAULT_REQUEST_HEADERS = {
 #HTTPCACHE_DIR='httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES=[]
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+timeStr = time.strftime("%Y%m%d%H%M%S", time.localtime())
+
+LOG_LEVEL= 'DEBUG'
+LOG_FILE ='log/lianjia_%s.log' % (timeStr)
+LOG_FORMAT = '%(asctime)s %(thread)d [line:%(lineno)d] [%(threadName)s] %(levelname)s %(message)s'
+LOG_DATEFORMAT = '%Y-%m-%d %H:%M:%S'
