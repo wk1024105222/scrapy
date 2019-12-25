@@ -182,7 +182,7 @@ class lianjiahouse_spider3(Spider):
                 after = url[index2:]
                 for a in range(2, totalPage + 1, 1):
                     newurl = '%s%d%s' % (before, a, after)
-                    yield Request(newurl, callback=self.parse_sellHouseItem)
+                    yield Request(newurl, callback=self.parse_dealHouseItem)
 
         tmp1 = url.split('/')[-2]
         xiaoquID = tmp1[tmp1.find('c'):]
