@@ -69,32 +69,42 @@ class lianjiahouse_spider3(Spider):
 
             yield item
             # 爬取小区在售房源第一页
-            yield Request('https://gz.lianjia.com/ershoufang/pg1c%s/' % (item['id']), callback=self.parse_sellHouseItem, dont_filter=True)
+            if item['sellCount']!='0':
+                yield Request('https://gz.lianjia.com/ershoufang/pg1c%s/' % (item['id']), callback=self.parse_sellHouseItem, dont_filter=True)
             # 爬取小区成交记录第一页
             yield Request('https://gz.lianjia.com/chengjiao/pg1c%s/' % (item['id']), callback=self.parse_dealHouseItem,dont_filter=True)
+        # yield Request('https://gz.lianjia.com/ershoufang/pg1c2111103318930/', callback=self.parse_sellHouseItem,
+        #               dont_filter=True)
 
     def parse_sellHouseItem(self, response):
         url = response.url;
-        pagesinfo = response.xpath('//div[@class="page-box house-lst-page-box"]/@page-data').extract()
-        # 若总页数>1 && 当前页==1 生成剩余页的url
-        if len(pagesinfo) > 0:
-            totalPage = json.loads(pagesinfo[0])['totalPage']
-            curPage = json.loads(pagesinfo[0])['curPage']
-            if curPage == 1 and totalPage > 1:
-                # https: // gz.lianjia.com / ershoufang / pg2c2110343238861213 /
+        # 定位 共找到 291 套广州二手房 确认数量 如果小区 成交数量为0 则跳过 如果数量超过10000 则跳过
+        try:
+            sellNum = int(response.xpath('//h2[@class="total fl"]/span/text()').extract()[0])
+            if sellNum >10000:
+                logger.info('%s this page is guangzhou total sell page' % (url))
+                return
+            elif sellNum >30:
                 index1 = url.find('pg')
                 index2 = url.find('c', index1 + 2)
                 before = url[0:index1 + 2]
                 after = url[index2:]
-                for a in range(2, totalPage + 1, 1):
+                for a in range(2, sellNum/30 + 2, 1):
                     newurl = '%s%d%s' % (before, a, after)
                     yield Request(newurl, callback=self.parse_sellHouseItem)
+                    # print newurl
+            elif sellNum == 0:
+                logger.info('%s this xiaoqu 0 house on sell' % (url))
+                return
+        except Exception as e:
+            logger.error('%s get dealNum error' % (url))
+            return
 
         tmp1 = url.split('/')[-2]
         xiaoquID = tmp1[tmp1.find('c'):]
         # 开始解析在售房源信息
         item = SellHouseItem()
-        houses = response.xpath('//li[@class="clear LOGCLICKDATA"]/div[@class="info clear"]')
+        houses = response.xpath('//li[@class="clear LOGVIEWDATA LOGCLICKDATA"]/div[@class="info clear"]')
 
         for house in houses:
             item['type'] = 'SellHouseItem'
@@ -115,74 +125,83 @@ class lianjiahouse_spider3(Spider):
                 item['id'] = 'error'
 
             try:
-                address = (house.xpath('div[@class="address"]/div[@class="houseInfo"]/a/text()').extract()[0] + \
-                           house.xpath('div[@class="address"]/div[@class="houseInfo"]/text()').extract()[0]).split('|')
-                if len(address) >= 1:
-                    item['xiaoqu'] = address[0]
-                if len(address) >= 2:
-                    item['layout'] = address[1]
-                if len(address) >= 3:
-                    item['area'] = address[2]
-                if len(address) >= 4:
-                    item['direction'] = address[3]
-                if len(address) >= 5:
-                    item['style'] = address[4]
-                if len(address) >= 6:
-                    item['lift'] = address[5]
+                item['xiaoqu'] = house.xpath('div[@class="flood"]/div/a/text()').extract()[0]
             except Exception as e:
                 item['xiaoqu'] = 'error'
+
+            try:
+                item['addr'] = house.xpath('div[@class="flood"]/div/a/text()').extract()[1]
+            except Exception as e:
+                item['addr'] = 'error'
+
+            try:
+                address = house.xpath('div[@class="address"]/div[@class="houseInfo"]/text()').extract()[0].split('|')
+                if len(address) >= 1:
+                    item['layout'] = address[0]
+                if len(address) >= 2:
+                    item['area'] = address[1]
+                if len(address) >= 3:
+                    item['direction'] = address[2]
+                if len(address) >= 4:
+                    item['style'] = address[3]
+                if len(address) >= 5:
+                    item['floor'] = address[4]
+                if len(address) >= 6:
+                    item['year'] = address[5]
+                if len(address) >= 7:
+                    item['houseType'] = address[6]
+            except Exception as e:
                 item['layout'] = 'error'
                 item['area'] = 'error'
                 item['direction'] = 'error'
                 item['style'] = 'error'
-                item['lift'] = 'error'
-
-            try:
-                item['addr'] = house.xpath('div[@class="flood"]/div[@class="positionInfo"]/a/text()').extract()[0]
-            except Exception as e:
-                item['addr'] = 'error'
-            try:
-                tmp = house.xpath('div[@class="flood"]/div[@class="positionInfo"]/text()').extract()[0]
-                item['floor'] = tmp[0:tmp.find(')') + 1]
-                item['year'] = tmp[tmp.find(')') + 1:-4]
-            except Exception as e:
                 item['floor'] = 'error'
                 item['year'] = 'error'
+                item['houseType'] = 'error'
+
             try:
                 tmp = house.xpath('div[@class="followInfo"]/text()').extract()[0].split('/')
                 if len(tmp) >= 1:
                     item['care'] = tmp[0]
                 if len(tmp) >= 2:
-                    item['visit'] = tmp[1]
-                if len(tmp) >= 3:
-                    item['publish'] = tmp[2]
+                    item['publish'] = tmp[1]
             except Exception as e:
                 item['care'] = 'error'
-                item['visit'] = 'error'
                 item['publish'] = 'error'
             try:
-                item['price'] = house.xpath('div[@class="priceInfo"]//div[@class="totalPrice"]/span/text()').extract()[0]
+                item['price'] = house.xpath('div[@class="priceInfo"]/div[@class="totalPrice"]/span/text()').extract()[0]
             except Exception as e:
                 item['price'] = 'error'
+            try:
+                item['unitPrice'] = house.xpath('div[@class="priceInfo"]/div[@class="unitPrice"]/span/text()').extract()[0]
+            except Exception as e:
+                item['unitPrice'] = 'error'
 
             yield item
 
     def parse_dealHouseItem(self, response):
         url = response.url;
-        pagesinfo = response.xpath('//div[@class="page-box house-lst-page-box"]/@page-data').extract()
-        # 若总页数>1 && 当前页==1 生成剩余页的url
-        if len(pagesinfo) > 0:
-            totalPage = json.loads(pagesinfo[0])['totalPage']
-            curPage = json.loads(pagesinfo[0])['curPage']
-            if curPage == 1 and totalPage > 1:
-                # https: // gz.lianjia.com / ershoufang / pg2c2110343238861213 /
+        # 定位 共找到 232 套广州成交房源 确认数量 如果小区 成交数量为0 会跳转到展示广州所有历史成交记录页面 则跳过
+        try:
+            dealNum = int(response.xpath('//div[@class="total fl"]/span/text()').extract()[0])
+            if dealNum >10000:
+                logger.info('%s this page is guangzhou total deal page'  % (url))
+                return
+            elif dealNum >30:
                 index1 = url.find('pg')
                 index2 = url.find('c', index1 + 2)
                 before = url[0:index1 + 2]
                 after = url[index2:]
-                for a in range(2, totalPage + 1, 1):
+                for a in range(2, dealNum/30 + 2, 1):
                     newurl = '%s%d%s' % (before, a, after)
                     yield Request(newurl, callback=self.parse_dealHouseItem)
+                    # print newurl
+            elif dealNum == 0:
+                logger.info('%s this xiaoqu 0 house is dealed' % (url))
+                return
+        except Exception as e:
+            logger.error('%s get dealNum error' % (url))
+            return
 
         tmp1 = url.split('/')[-2]
         xiaoquID = tmp1[tmp1.find('c'):]
