@@ -40,6 +40,11 @@ class SellHouseItem(Item):
     lift=Field()
     # 关注数量
     care=Field()
+    # 塔楼
+    houseType=Field()
+
+    # 平米价格
+    unitPrice= Field()
     publish = Field()
 
 class DealHouseItem(Item):
