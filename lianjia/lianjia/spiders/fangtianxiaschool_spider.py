@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-import json
 import logging
+from pybloom import BloomFilter
 
 from scrapy import Spider, Request
-from lianjia.items import SellHouseItem, XiaoquItem, DealHouseItem, SchoolItem, RecruitStudentsItem
+from lianjia.items import SchoolItem, RecruitStudentsItem
 
 logger = logging.getLogger('fangtianxiaschool_spider')
+f = BloomFilter(capacity=10000, error_rate=0.00001)
 
 class fangtianxiaschool_spider(Spider):
     '''
@@ -20,9 +21,13 @@ class fangtianxiaschool_spider(Spider):
         # 获取当前页面学校url
         schoolUrls = response.xpath('//p[@class="title"]/a/@href').extract()
         for url in schoolUrls:
-            yield Request('https://gz.esf.fang.com%s' % (url), callback=self.parse_schoolItemFromDetailPage,dont_filter=True)
+            if url in f:
+                logger.warn('%s has been visited' % (url))
+                continue
+            else:
+                f.add()
+                yield Request('https://gz.esf.fang.com%s' % (url), callback=self.parse_schoolItemFromDetailPage,dont_filter=True)
         #     break
-        #
         # yield Request('https://gz.esf.fang.com/school/257.htm', callback=self.parse_schoolItemFromDetailPage,
         #               dont_filter=True)
 
@@ -81,12 +86,21 @@ class fangtianxiaschool_spider(Spider):
         try:
             toSchoolUrls = response.xpath('//div[@class="info floatr"]/ul/li[@class="school"]/p/a[@class="pr5 blue"]/@href').extract()
             for url in toSchoolUrls:
-                yield Request('https://gz.esf.fang.com%s' % (url), callback=self.parse_schoolItemFromDetailPage,dont_filter=True)
+                if url in f:
+                    logger.warn('%s has been visited' % (url))
+                    continue
+                else:
+                    f.add()
+                    yield Request('https://gz.esf.fang.com%s' % (url), callback=self.parse_schoolItemFromDetailPage,dont_filter=True)
         except Exception as e:
             logger.error('%s get toSchool Error ' % (response.url))
 
-        yield Request('https://gz.esf.fang.com/school/%s/profile/#profile' % (item['id']), callback=self.parse_recruitStudentsItemFromDetailPage,
-                      dont_filter=True)
+        url = 'https://gz.esf.fang.com/school/%s/profile/#profile' % (item['id'])
+        if url in f:
+            logger.warn('%s has been visited' % (url))
+        else:
+            f.add()
+            yield Request(url, callback=self.parse_recruitStudentsItemFromDetailPage,dont_filter=True)
 
         yield item
 
