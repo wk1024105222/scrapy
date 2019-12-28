@@ -84,4 +84,29 @@ class XiaoquItem(Item):
     # 建筑时间
     buidYear = Field()
 
+class SchoolItem(Item):
+    id = Field()
+    type = Field()
+    # 链接
+    url=Field()
+    name = Field()  # 名称
+    alias = Field()  # 别名
+    primaryMiddle = Field()  # 小学中学
+    rank = Field()  # 等级省级=Field() #市级。。
+    statePrivare = Field()  # 公立私立
+    addr = Field()  # 地址
+    featureTag = Field()  # 特色
+    tel = Field()  # 电话
+    toSchool = Field()  # 对口学校
+
+
+class RecruitStudentsItem(Item):
+    id = Field()
+    introduce = Field()  # 学校介绍
+    scope = Field()  # 招生范围
+    brochure = Field()  # 招生简章
+    require = Field()  # 入学条件
+    feature = Field()  # 学校特色描述
+
+
 
