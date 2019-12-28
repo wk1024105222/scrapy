@@ -25,7 +25,7 @@ class fangtianxiaschool_spider(Spider):
                 logger.warn('%s has been visited' % (url))
                 continue
             else:
-                f.add()
+                f.add(url)
                 yield Request('https://gz.esf.fang.com%s' % (url), callback=self.parse_schoolItemFromDetailPage,dont_filter=True)
         #     break
         # yield Request('https://gz.esf.fang.com/school/257.htm', callback=self.parse_schoolItemFromDetailPage,
@@ -90,7 +90,7 @@ class fangtianxiaschool_spider(Spider):
                     logger.warn('%s has been visited' % (url))
                     continue
                 else:
-                    f.add()
+                    f.add(url)
                     yield Request('https://gz.esf.fang.com%s' % (url), callback=self.parse_schoolItemFromDetailPage,dont_filter=True)
         except Exception as e:
             logger.error('%s get toSchool Error ' % (response.url))
@@ -99,7 +99,7 @@ class fangtianxiaschool_spider(Spider):
         if url in f:
             logger.warn('%s has been visited' % (url))
         else:
-            f.add()
+            f.add(url)
             yield Request(url, callback=self.parse_recruitStudentsItemFromDetailPage,dont_filter=True)
 
         yield item
