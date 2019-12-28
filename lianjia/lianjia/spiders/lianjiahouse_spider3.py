@@ -70,13 +70,13 @@ class lianjiahouse_spider3(Spider):
             yield item
             # 爬取小区在售房源第一页
             if item['sellCount']!='0':
-                yield Request('https://gz.lianjia.com/ershoufang/pg1c%s/' % (item['id']), callback=self.parse_sellHouseItem, dont_filter=True)
+                yield Request('https://gz.lianjia.com/ershoufang/pg1c%s/' % (item['id']), callback=self.parse_sellHouseItemFromListPage, dont_filter=True)
             # 爬取小区成交记录第一页
-            yield Request('https://gz.lianjia.com/chengjiao/pg1c%s/' % (item['id']), callback=self.parse_dealHouseItem,dont_filter=True)
-        # yield Request('https://gz.lianjia.com/ershoufang/pg1c2111103318930/', callback=self.parse_sellHouseItem,
+            yield Request('https://gz.lianjia.com/chengjiao/pg1c%s/' % (item['id']), callback=self.parse_dealHouseItemFromListPage,dont_filter=True)
+        # yield Request('https://gz.lianjia.com/ershoufang/c2110343238599609/', callback=self.parse_sellHouseItemFromListPage,
         #               dont_filter=True)
 
-    def parse_sellHouseItem(self, response):
+    def parse_sellHouseItemFromListPage(self, response):
         url = response.url;
         # 定位 共找到 291 套广州二手房 确认数量 如果小区 成交数量为0 则跳过 如果数量超过10000 则跳过
         try:
@@ -91,7 +91,7 @@ class lianjiahouse_spider3(Spider):
                 after = url[index2:]
                 for a in range(2, sellNum/30 + 2, 1):
                     newurl = '%s%d%s' % (before, a, after)
-                    yield Request(newurl, callback=self.parse_sellHouseItem)
+                    yield Request(newurl, callback=self.parse_sellHouseItemFromListPage)
                     # print newurl
             elif sellNum == 0:
                 logger.info('%s this xiaoqu 0 house on sell' % (url))
@@ -179,7 +179,7 @@ class lianjiahouse_spider3(Spider):
 
             yield item
 
-    def parse_dealHouseItem(self, response):
+    def parse_dealHouseItemFromListPage(self, response):
         url = response.url;
         # 定位 共找到 232 套广州成交房源 确认数量 如果小区 成交数量为0 会跳转到展示广州所有历史成交记录页面 则跳过
         try:
@@ -194,7 +194,7 @@ class lianjiahouse_spider3(Spider):
                 after = url[index2:]
                 for a in range(2, dealNum/30 + 2, 1):
                     newurl = '%s%d%s' % (before, a, after)
-                    yield Request(newurl, callback=self.parse_dealHouseItem)
+                    yield Request(newurl, callback=self.parse_dealHouseItemFromListPage)
                     # print newurl
             elif dealNum == 0:
                 logger.info('%s this xiaoqu 0 house is dealed' % (url))
