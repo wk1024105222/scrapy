@@ -62,38 +62,51 @@ class fangtianxiaschool_spider(Spider):
             item['alias'] = 'error'
             item['statePrivare'] = 'error'
 
-        try:
-            item['addr'] = response.xpath('//div[@class="info floatr"]/ul/li[3]/text()').extract()[0]
-        except Exception as e:
-            item['addr'] = 'error'
+        infoTags = response.xpath('//div[@class="info floatr"]/ul/li')
+        for tag in infoTags:
+            names = tag.xpath('span[@class="gray6"]/text()').extract()
+            name = u''
+            if names == None or len(names)==0:
+                continue
+            else:
+                name = names[0]
+            if name == None:
+                continue
+            elif name == u'学校地址：':
+                try:
+                    item['addr'] = tag.xpath('text()').extract()[0]
+                except Exception as e:
+                    item['addr'] = 'error'
+            elif name == u'学校特色：':
+                try:
+                    item['featureTag'] = tag.xpath('span[@class="pr5"]/text()').extract()
+                except Exception as e:
+                    item['featureTag'] = 'error'
+            elif name == u'学校电话：':
+                try:
+                    item['tel'] = tag.xpath('text()').extract()[0]
+                except Exception as e:
+                    item['tel'] = 'error'
 
-        try:
-            item['featureTag'] = response.xpath('//div[@class="info floatr"]/ul/li[5]/span[@class="pr5"]/text()').extract()[0]
-        except Exception as e:
-            item['featureTag'] = 'error'
+            elif name == u'升学情况：':
+                try:
+                    toSchoolNames = tag.xpath('p/a[@class="pr5 blue"]/text()').extract()
+                    item['toSchool'] = toSchoolNames
+                except Exception as e:
+                    item['toSchool'] = 'error'
 
-        try:
-            item['tel'] = response.xpath('//div[@class="info floatr"]/ul/li[6]/text()').extract()[0]
-        except Exception as e:
-            item['tel'] = 'error'
-
-        try:
-            toSchoolNames = response.xpath('//div[@class="info floatr"]/ul/li[@class="school"]/p/a[@class="pr5 blue"]/text()').extract()
-            item['toSchool'] = toSchoolNames
-        except Exception as e:
-            item['toSchool'] = 'error'
-
-        try:
-            toSchoolUrls = response.xpath('//div[@class="info floatr"]/ul/li[@class="school"]/p/a[@class="pr5 blue"]/@href').extract()
-            for url in toSchoolUrls:
-                if url in f:
-                    logger.warn('%s has been visited' % (url))
-                    continue
-                else:
-                    f.add(url)
-                    yield Request('https://gz.esf.fang.com%s' % (url), callback=self.parse_schoolItemFromDetailPage,dont_filter=True)
-        except Exception as e:
-            logger.error('%s get toSchool Error ' % (response.url))
+                try:
+                    toSchoolUrls = tag.xpath('p/a[@class="pr5 blue"]/@href').extract()
+                    for url in toSchoolUrls:
+                        if url in f:
+                            logger.warn('%s has been visited' % (url))
+                            continue
+                        else:
+                            f.add(url)
+                            yield Request('https://gz.esf.fang.com%s' % (url),
+                                          callback=self.parse_schoolItemFromDetailPage, dont_filter=True)
+                except Exception as e:
+                    logger.error('%s get toSchool Error ' % (response.url))
 
         url = 'https://gz.esf.fang.com/school/%s/profile/#profile' % (item['id'])
         if url in f:
@@ -106,36 +119,40 @@ class fangtianxiaschool_spider(Spider):
 
     def parse_recruitStudentsItemFromDetailPage(self, response):
         item = RecruitStudentsItem()
+        item['id'] = response.url.split('/')[4]
+        item['type'] = 'RecruitStudentsItem'
+        item['url'] = response.url
 
-        tagNames = response.xpath('//div[@class="profile"]/dl/dt/text()').extract()
-        tagContent = response.xpath('//div[@class="profile"]/dl/dd')
+        tags = response.xpath('//div[@class="profile"]/dl')
 
-        for i in range(0,len(tagNames),1):
+        for tag in tags:
+            tagName = tag.xpath('dt/text()').extract()[0]
             str = ""
-            x = tagContent[i].xpath('p[@style="display:none "]/text()').extract()
+            x = tag.xpath('dd[1]/p[@style="display:none "]/text()').extract()
             if x != None and len(x)>0:
                 for m in x:
                     str += m + '\r\n'
             else:
-                x = tagContent[i].xpath('p[@style="display:none"]/text()').extract()
+                x = tag.xpath('dd[1]/p[@style="display:none"]/text()').extract()
                 if x != None and len(x)>0:
                     for m in x:
                         str += m + '\r\n'
                 else:
-                    x = tagContent[i].xpath('p[@style="display:"]/text()').extract()
+                    x = tag.xpath('dd[1]/p[@style="display:"]/text()').extract()
+
                     if x != None and len(x)>0:
                         for m in x:
                             str += m + '\r\n'
                     else:
                         str = 'error'
-            if tagNames[i]==u'招生简章':
+            if tagName==u'招生简章':
                 item['brochure'] =str
-            elif  tagNames[i]==u'学校介绍':
+            elif  tagName==u'学校介绍':
                 item['introduce']=str
-            elif tagNames[i] == u'招生范围':
+            elif tagName == u'招生范围':
                 item['scope']=str
-            elif tagNames[i] == u'入学条件':
+            elif tagName == u'入学条件':
                 item['require']=str
-            elif tagNames[i] == u'学校特色描述':
+            elif tagName== u'学校特色描述':
                 item['feature']=str
         yield item
