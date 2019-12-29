@@ -1,0 +1,61 @@
+# -*- coding: utf-8 -*-
+import json
+import sys
+
+from lianjia.dbpool import pool
+
+reload(sys)
+
+sys.setdefaultencoding('utf8')
+
+def insertSchoolInfooDB():
+    con = pool.connection()
+    cursor = con.cursor()
+    sourcef = open('data/fangtianxiaschool_spider_20191229021332.json')
+    jsons = json.load(sourcef)
+    for info in jsons:
+        sql = ''
+        if 'type' in info and info['type']=='SchoolItem' :
+            try:
+                sql = "INSERT INTO school VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', null, null, null, null, null) " % (
+                    info['id'].encode('utf-8'),
+                    info['url'].encode('utf-8'),
+                    info['name'].encode('utf-8'),
+                    info['alias'].encode('utf-8'),
+                    info['primaryMiddle'].encode('utf-8'),
+                    info['rank'].encode('utf-8'),
+                    info['statePrivare'].encode('utf-8'),
+                    info['addr'].encode('utf-8'),
+                    info['featureTag'].encode('utf-8'),
+                    info['tel'].encode('utf-8'),
+                ','.join(info['toSchool']).encode('utf-8'))
+
+                cursor.execute(sql)
+            except Exception as e:
+                print info['id']
+    con.commit()
+    con.close()
+def insertBrochurelInfooDB():
+    con = pool.connection()
+    cursor = con.cursor()
+    sourcef = open('data/fangtianxiaschool_spider_20191229021332.json')
+    jsons = json.load(sourcef)
+    for info in jsons:
+        sql = ''
+        if 'type' not in info :
+            try:
+                sql = "update school set brochure='%s', introduc='%s',e scope='%s', requirement='%s', feature='%s' where id='%s'" % (
+                    info['brochure'],
+                    info['introduce'],
+                    info['scope'],
+                    info['require'],
+                    info['feature'],
+                    info['id']
+                )
+                cursor.execute(sql)
+            except Exception as e:
+                print info['id']
+    con.commit()
+    con.close()
+if __name__=='__main__':
+    insertBrochurelInfooDB()
