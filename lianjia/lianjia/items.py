@@ -102,6 +102,8 @@ class SchoolItem(Item):
 
 class RecruitStudentsItem(Item):
     id = Field()
+    url = Field()
+    type = Field()
     introduce = Field()  # 学校介绍
     scope = Field()  # 招生范围
     brochure = Field()  # 招生简章
